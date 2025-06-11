@@ -1,17 +1,10 @@
-import { useState } from 'react'
-import Body from './components/Body'
-import About from './components/About'
-import Onlinestatus from './Onlinestatus';
-function App() {
-  const [count, setCount] = useState(0)
-  const useOnlinestatus = Onlinestatus();
+import React from 'react'
+
+const App = () => {
   return (
-    <>
-     <div className='text-4xl font-bold text-green-800'>
-      Namaste, everyone, lets build</div>
-      <About/>
-      <li>{useOnlinestatus?"true":"false"}</li>
-    </>
+    <div>
+      <h1 className='border border-orange-500'>hello guys</h1>
+    </div>
   )
 }
 
