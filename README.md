@@ -2,6 +2,10 @@
 
 - npm create vite@latest
 - configure tailwindcss put version 3 to    make it workable
+-Header
+-Login form
+
+
 
 
 # Features

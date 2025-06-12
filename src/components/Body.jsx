@@ -1,18 +1,26 @@
 import React from 'react'
-import Browse from './Browse'
 import Login from './Login'
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import Browse from './Browse'
+import { createBrowserRouter} from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
 
 const Body = () => {
-const useonlinestatus = Onlinestatus()
+
+  const approuter = createBrowserRouter([
+    {
+      path:"/",
+      element:<Login/>
+    },
+    {
+      path:"/browser",
+      element:<Browse/>
+    }
+  ])
+
   return (
     <div>
-      
-  {
-    <li>{useonlinestatus ? "yes":"false"}</li>
-  }
-
-       <RouterProvider router={appRouter}/>
+      <RouterProvider router={approuter}/>
+     
     </div>
   )
 }
