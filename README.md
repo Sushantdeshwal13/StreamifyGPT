@@ -3,7 +3,19 @@
 - npm create vite@latest
 - configure tailwindcss put version 3 to    make it workable
 -Header
+-Routing of App
 -Login form
+-signup form
+-form validation
+-useRef hook
+-firebase setup
+-deploying our app to production
+-create signup user account 
+-implement Sign in user Api
+-created Redux store with userslice
+
+
+
 
 
 
