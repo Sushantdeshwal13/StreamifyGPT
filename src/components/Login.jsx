@@ -52,6 +52,7 @@ const Login = () => {
             photoURL:photoURL,
           })
         )
+        navigate("/browser");
       })
       .catch((error)=>{
         seterrormsg(error.message);

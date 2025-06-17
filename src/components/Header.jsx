@@ -4,6 +4,7 @@ import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { adduser, removeuser } from '../utils/userslice';
+import { togglegptsearchview } from '../utils/gptslice';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -18,10 +19,13 @@ const Header = () => {
     navigate("/error");
    });
   };
+      
 
   useEffect(()=>{
-     const unsubscribe =  onAuthStateChanged(auth, (user)=>{
+     const unsubscribe =  onAuthStateChanged(auth, async(user)=>{
+
       if(user){
+        await user.reload();
         // User is signed in, see docs for a list of availabe properties
         //https://firebase.google.com/docs/reference/js/auth.user
         const { uid, email, displayName, photoURL} = user;
@@ -40,6 +44,12 @@ const Header = () => {
          return () => unsubscribe();
   },[]);
 
+  const handlegptsearch = () =>{
+    //toggle gptsearch
+    dispatch(togglegptsearchview());
+    
+   }
+
   return (
     <div className='absolute z-20 px-6 py-4 bg-gradient-to-b from-black w-full flex justify-between items-center'>
       {/* Left: Logo */}
@@ -51,18 +61,33 @@ const Header = () => {
 
       {/* Right: User Avatar */}
       {user && (
-      <div className="w-10 h-10 -mt-6 ">
-        <img 
-          alt="user icon"
-          src={user?.photoURL || '/planing.png'}
-          className="w-full h-full object-cover rounded-md cursor-pointer"
-        />
-        <button onClick={handlesignout} className='text-[11px] font-normal text-white hover:underline px-1 py-0.5 -mx-2 mt-4'>
-        (SignOut)
-        </button>
+  <div className="flex items-center gap-3 -mt-6">
+    {/* GPT Search Button */}
+    <button className='py-2 px-4 text-white bg-green-600 rounded'
+    onClick={handlegptsearch}
+    >
+      GPT Search
+    </button>
 
-      </div>
-      )}
+    {/* User Image */}
+    <div className="w-10 h-10">
+      <img 
+        alt="user icon"
+        src={user?.photoURL || '/planing.png'}
+        className="w-full h-full object-cover rounded-md cursor-pointer"
+      />
+    </div>
+
+    {/* Sign Out */}
+    <button
+      onClick={handlesignout}
+      className='text-[11px] font-normal text-white hover:underline px-1 py-0.5 mt-4 mr-4'
+    >
+      (SignOut)
+    </button>
+  </div>
+)}
+
     </div>
   );
 };

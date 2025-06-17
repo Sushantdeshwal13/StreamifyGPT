@@ -21,7 +21,7 @@
 -unsubscribe to the onAuthStateChanged callback.
 - add hardcoded values to the constants file and export and use them
 - Register TMDB API and create an app and get access token
--get datat from TMDB now playing movies list API 
+- get datat from TMDB now playing movies list API 
 - Custom hook for nowplayingmovies
 - create movieSlice
 - update store with  movies data
@@ -30,7 +30,13 @@
 - update store with trailer video data
 - embedded the youtube video and make it autoplay and mute
 - tailwind classes to make main container look awesome
-
+- build secondary component
+- build movie list
+- build movie card
+- tmdb image cdn url
+- made the browse page amzing with tailwind css
+- usepopularmovies custom hook
+-GPT search feature
 
 
 

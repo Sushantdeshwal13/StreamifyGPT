@@ -5,20 +5,33 @@ import { addtrailervideo } from "../utils/Movieslice";
 // This hook fetches the movie trailer based on the movieId and dispatches it to the Redux store
 
 const usemovietrailer = (movieId) => {
-     const dispatch = useDispatch();
-     const getMovieVideos = async () => {
+  const dispatch = useDispatch();
+
+  const getMovieVideos = async () => {
     try {
       const data = await fetch(
-         `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-          API_OPTIONS
+        `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+        API_OPTIONS
       );
+
       const json = await data.json();
-      console.log(json); // you’ll see YouTube trailers, teasers etc.
-      
-      const filterdata = json.results.filter((video)=> video.type === "Trailer");
-      const trailer = filterdata.length ? filterdata[0] : json.results[0];
-      dispatch(addtrailervideo(trailer))
-   
+
+      // 👇 Custom filter logic
+      const officialTrailer = json.results.find(
+        (video) =>
+          video.type === "Trailer" &&
+          video.official === true &&
+          video.site === "YouTube"
+      );
+
+      // 👇 If not found, fallback to first YouTube trailer
+      const fallbackTrailer = json.results.find(
+        (video) => video.type === "Trailer" && video.site === "YouTube"
+      );
+
+      const trailer = officialTrailer || fallbackTrailer;
+
+      dispatch(addtrailervideo(trailer));
     } catch (error) {
       console.error("Error fetching video:", error);
     }
@@ -27,6 +40,7 @@ const usemovietrailer = (movieId) => {
   useEffect(() => {
     if (movieId) getMovieVideos();
   }, [movieId]);
-}
+};
+
 
 export default usemovietrailer;
