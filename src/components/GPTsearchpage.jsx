@@ -1,4 +1,3 @@
-import React from 'react'
 import Gptsearchbar from './Gptsearchbar'
 import Gptmoviesuggestion from './Gptmoviesuggestion'
 

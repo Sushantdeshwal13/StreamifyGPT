@@ -36,7 +36,10 @@
 - tmdb image cdn url
 - made the browse page amzing with tailwind css
 - usepopularmovies custom hook
--GPT search feature
+- GPT search page
+- GPT search bar
+- Mutli-language feature in our app (bonus)
+- Integerate GPT API
 
 
 

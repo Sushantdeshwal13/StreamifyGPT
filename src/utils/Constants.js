@@ -7,3 +7,22 @@ export const API_OPTIONS = {
 };
 
 export const IMG_CON = 'https://image.tmdb.org/t/p/w500';
+
+export const SupportedLanguages = [{
+  identifier: 'en',
+  name: 'English'
+}, {
+  identifier: 'es',
+  name: 'Español'
+}, {
+  identifier: 'fr',
+  name: 'Français'
+}, {
+  identifier: 'hi',
+  name: 'हिन्दी'
+}, {
+  identifier: 'de',
+  name: 'Deutsch'
+}];
+
+export const GROK_API_KEY = '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';
