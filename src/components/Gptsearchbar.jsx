@@ -1,10 +1,12 @@
 import React, { useRef } from 'react'
 import languages from '../utils/languageconst'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import openai from '../utils/openai'
 import { API_OPTIONS } from '../utils/Constants'
+import { addgptmovieresults } from '../utils/gptslice'
 
 const Gptsearchbar = () => {
+  const dispatch = useDispatch();
    const langkey = useSelector((store)=> store.config.lang);
    const searchtext = useRef(null);
 
@@ -30,13 +32,17 @@ const handlegptsearchclick = async () => {
     const getresults = await openai.chat.completions.create({
   messages: [{ role: 'user', content: gptquery }],
   model: "llama3-70b-8192", // ✅ Working Groq-compatible model
-});
+}); 
 
 
     const reply = getresults.choices?.[0]?.message?.content;
-    console.log("🎬 Recommended Movies:", reply);
-    // andaz apna apna, hera pheri, don
-    const gptmovies = getresults.choices?.[0]?.message?.content.split(",");
+const cleanedReply = reply.replace(/Here are.*?:/i, "").trim();  // ✅ Clean intro
+
+const gptmovies = cleanedReply
+  .split(",")
+  .map((movie) => movie.trim())
+  .filter((name) => name.length > 0);
+
    //["andaz apna apna", "hera pheri", "don"]
     //for each movie i will search imdb api
    
@@ -44,6 +50,8 @@ const handlegptsearchclick = async () => {
     // promise , promise, promise ,prommise, prommise
      const tmdbresults = await Promise.all(promisearray) 
       console.log(tmdbresults);
+
+      dispatch(addgptmovieresults({movienames: gptmovies, movieresults: tmdbresults}))
     // Optional: update your UI state here
   } catch (err) {
     console.error("❌ GPT Search Error: ", err);

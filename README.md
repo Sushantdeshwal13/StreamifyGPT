@@ -39,7 +39,15 @@
 - GPT search page
 - GPT search bar
 - Mutli-language feature in our app (bonus)
-- Integerate GPT API
+- Integerate Grok API key
+- grok search api call
+- getched gptmoviesuggestions from tmdb
+- created gptslice added data
+- reused movie list component to make movie suggestion container
+- Memoization
+- added .env file
+- adding .env file to gitignore
+- made our site responsive
 
 
 

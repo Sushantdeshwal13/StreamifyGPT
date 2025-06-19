@@ -2,7 +2,7 @@ export const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZGIyYzQ2MTE0NTFmMzZjZmVjOTZjZmFlOGUyNGEwMyIsIm5iZiI6MTc0OTg4NjYwNS4yMDg5OTk5LCJzdWIiOiI2ODRkMjY4ZDgwYWQzMDExOTYyOTQ3Y2QiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.DFuK2zuq4n094Z4Jsy9TVp4R0A7Z_BtgNsX2q52_jxk'
+    Authorization: 'Bearer ' + import.meta.env.VITE_TMDB_KEY,
   }
 };
 
@@ -25,4 +25,4 @@ export const SupportedLanguages = [{
   name: 'Deutsch'
 }];
 
-export const GROK_API_KEY = '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';
+export const GROK_API_KEY = import.meta.env.VITE_GROK_API_KEY;
