@@ -47,7 +47,7 @@
 - Memoization
 - added .env file
 - adding .env file to gitignore
-- made our site responsive
+- made our site responsive..
 
 
 
